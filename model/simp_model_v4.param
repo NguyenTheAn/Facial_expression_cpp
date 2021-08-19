@@ -1,0 +1,26 @@
+7767517
+24 25
+Input            input_1                  0 1 input_1
+Convolution      Conv_0                   1 1 input_1 42 0=32 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=0 6=864
+BatchNorm        BatchNormalization_1     1 1 42 43 0=32
+PReLU            PRelu_2                  1 1 43 45 0=1
+Convolution      Conv_3                   1 1 45 46 0=64 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=0 6=18432
+BatchNorm        BatchNormalization_4     1 1 46 47 0=64
+PReLU            PRelu_5                  1 1 47 49 0=1
+Convolution      Conv_6                   1 1 49 50 0=64 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=0 6=36864
+BatchNorm        BatchNormalization_7     1 1 50 51 0=64
+PReLU            PRelu_8                  1 1 51 53 0=1
+Convolution      Conv_9                   1 1 53 54 0=128 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=0 6=73728
+BatchNorm        BatchNormalization_10    1 1 54 55 0=128
+PReLU            PRelu_11                 1 1 55 57 0=1
+Convolution      Conv_12                  1 1 57 58 0=128 1=3 11=3 2=1 12=1 3=2 13=2 4=1 14=1 15=1 16=1 5=0 6=147456
+BatchNorm        BatchNormalization_13    1 1 58 59 0=128
+PReLU            PRelu_14                 1 1 59 61 0=1
+Pooling          MaxPool_15               1 1 61 62 0=0 1=2 11=2 2=2 12=2 3=0 13=0 14=0 15=0 5=1
+Reshape          Reshape_21               1 1 62 70 0=-1
+Split            splitncnn_0              1 2 70 70_splitncnn_0 70_splitncnn_1
+InnerProduct     Gemm_22                  1 1 70_splitncnn_1 71 0=1 1=1 2=512
+Sigmoid          Sigmoid_23               1 1 71 output_1
+InnerProduct     Gemm_24                  1 1 70_splitncnn_0 73 0=64 1=1 2=32768
+InnerProduct     Gemm_25                  1 1 73 74 0=4 1=1 2=256
+BinaryOp         Mul_26                   2 1 output_1 74 output_2 0=2
